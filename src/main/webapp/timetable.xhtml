@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>SBB Timetable</title>
+</h:head>
+<h:body>
+    <p:dataTable var="schedule" value="#{timetable.schedules}">
+        <p:column headerText="Train">
+            <h:outputText value="#{schedule.trainName}"/>
+        </p:column>
+
+        <p:column headerText="Arrival">
+            <h:outputText value="#{schedule.arrivalTime}"/>
+        </p:column>
+
+        <p:column headerText="Departure">
+            <h:outputText value="#{schedule.departureTime}"/>
+        </p:column>
+
+        <p:column headerText="Direction">
+            <h:outputText value="#{schedule.endStation}"/>
+        </p:column>
+    </p:dataTable>
+</h:body>
+</html>
