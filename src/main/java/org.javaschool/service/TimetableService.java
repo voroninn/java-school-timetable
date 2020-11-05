@@ -1,4 +1,4 @@
-package org.javaschool;
+package org.javaschool.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -12,9 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.javaschool.model.Schedule;
+import org.omnifaces.cdi.Push;
+import org.omnifaces.cdi.PushContext;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -29,6 +33,10 @@ import java.util.List;
 public class TimetableService implements Serializable {
 
     private List<Schedule> schedules = new ArrayList<>();
+
+    @Inject
+    @Push(channel = "timetableChannel")
+    private PushContext pushContext;
 
     @PostConstruct
     public void init() {
@@ -49,6 +57,7 @@ public class TimetableService implements Serializable {
         String schedulesJson = response.getEntity(String.class);
         log.info("Received response from 1st app: " + schedulesJson);
         schedules = parseSchedules(schedulesJson);
+        pushContext.send("Timetable updated");
     }
 
     public List<Schedule> parseSchedules(String schedulesJson) {

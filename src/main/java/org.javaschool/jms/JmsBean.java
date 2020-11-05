@@ -1,6 +1,7 @@
-package org.javaschool;
+package org.javaschool.jms;
 
 import lombok.extern.log4j.Log4j2;
+import org.javaschool.service.TimetableService;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -21,6 +22,7 @@ public class JmsBean {
 
     @EJB
     private TimetableService timetableService;
+
     private QueueConnection connection;
     private QueueSession session;
     private QueueReceiver receiver;

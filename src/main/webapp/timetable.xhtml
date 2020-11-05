@@ -3,12 +3,15 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>SBB Timetable</title>
 </h:head>
+
 <h:body>
+    <h3 style="text-align: center">Live timetable for #{timetable.schedules.get(0).stationName}</h3>
     <p:dataTable var="schedule" value="#{timetable.schedules}">
         <p:column headerText="Train">
             <h:outputText value="#{schedule.trainName}"/>
@@ -27,4 +30,13 @@
         </p:column>
     </p:dataTable>
 </h:body>
+
+<o:socket channel="timetableChannel" scope="application" onmessage="socketListener"/>
+
+<script type="text/javascript">
+    function socketListener(message, channel, event) {
+        window.location.reload();
+    }
+</script>
+
 </html>

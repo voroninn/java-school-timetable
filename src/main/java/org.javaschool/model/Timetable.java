@@ -1,8 +1,9 @@
-package org.javaschool;
+package org.javaschool.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.javaschool.service.TimetableService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
