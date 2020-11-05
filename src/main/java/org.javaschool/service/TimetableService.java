@@ -61,7 +61,8 @@ public class TimetableService implements Serializable {
     }
 
     public List<Schedule> parseSchedules(String schedulesJson) {
-        Type collectionType = new TypeToken<ArrayList<Schedule>>(){}.getType();
+        Type collectionType = new TypeToken<ArrayList<Schedule>>() {
+        }.getType();
         return new Gson().fromJson(schedulesJson, collectionType);
     }
 }

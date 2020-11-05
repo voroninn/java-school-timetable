@@ -15,6 +15,8 @@ public class Schedule {
 
     private String trainName;
 
+    private String trainStatus;
+
     private String arrivalTime;
 
     private String departureTime;
@@ -22,4 +24,17 @@ public class Schedule {
     private boolean direction;
 
     private String endStation;
+
+    public String getColorForTimetable() {
+        switch (this.getTrainStatus()) {
+            case "On Schedule":
+                return "forestgreen";
+            case "Delayed":
+                return "goldenrod";
+            case "Cancelled":
+                return "red";
+            default:
+                return "black";
+        }
+    }
 }

@@ -8,25 +8,26 @@
 
 <h:head>
     <title>SBB Timetable</title>
+    <h:outputStylesheet library="css" name="timetableColors.css" target="head"/>
 </h:head>
 
 <h:body>
-    <h3 style="text-align: center">Live timetable for #{timetable.schedules.get(0).stationName}</h3>
+    <h1 style="text-align: center">Live timetable for #{timetable.schedules.get(0).stationName}</h1>
     <p:dataTable var="schedule" value="#{timetable.schedules}">
         <p:column headerText="Train">
             <h:outputText value="#{schedule.trainName}"/>
         </p:column>
-
         <p:column headerText="Arrival">
             <h:outputText value="#{schedule.arrivalTime}"/>
         </p:column>
-
         <p:column headerText="Departure">
             <h:outputText value="#{schedule.departureTime}"/>
         </p:column>
-
         <p:column headerText="Direction">
             <h:outputText value="#{schedule.endStation}"/>
+        </p:column>
+        <p:column headerText="Status">
+            <h:outputText value="#{schedule.trainStatus}" style="color: #{schedule.getColorForTimetable()}"/>
         </p:column>
     </p:dataTable>
 </h:body>
