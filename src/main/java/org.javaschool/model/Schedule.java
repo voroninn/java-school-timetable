@@ -26,7 +26,7 @@ public class Schedule {
     private String endStation;
 
     public String getColorForTimetable() {
-        switch (this.getTrainStatus()) {
+        switch (getTrainStatus()) {
             case "On Schedule":
                 return "forestgreen";
             case "Delayed":
